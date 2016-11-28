@@ -1,12 +1,13 @@
 var express = require('express');
 var path = require('path');
+var bodyParser = require('body-parser');
 
 
 
 var app = express();
 
-// configure app ---------------------------
-app.use(express.logger('dev'))
+// configure app ----------------------------------------------------
+
 
 //set view engine to ejs
 app.set('view engine', 'ejs');
@@ -16,38 +17,54 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-//use middleware
+//use middleware--------------------------------------------
 
+//parses json and urlencoded requests
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
 // define routes --------------------------------------------------
 
-//whenever client "gets" app, server responds with func
-app.get('/', function (req, res) {
-  res.render("index");
-}); 
+//route for main page
+app.get('/', function(req, res) {
+  res.render('index');
+});
 
-app.listen(8080, function() {
+
+//route for api call
+app.get('/:time', function(req, res) {
+  //req.send(req.params.time)
+  if((/^[a-zA-z]+/ig).test(req.params.time)){
+  var dateTime = new Date(req.params.time);
+  if (dateTime.getTime() > 0) {
+  res.json({unix: Math.round(dateTime.getTime()/1000), date: dateTime.toDateString()});
+  }
+  else {
+    res.json({unix: null, date: null});
+  }
+  }
+  
+  else if ((/^\d/).test(req.params.time)) {
+    var unixTime = new Date(req.params.time * 1000);
+    if (Math.round(unixTime.getTime()/1000) > 0) {
+    res.json({unix: Math.round(unixTime.getTime()/1000), date: unixTime.toDateString()});
+    }
+    else {
+      res.json({unix: null, date: null});
+    }
+  }
+  
+  else {
+    res.json({unix: null, date: null});
+  }
+})
+
+
+
+
+//Server start-------------------------------------------
+
+app.listen(process.env.PORT, function() {
   console.log(`ready on port 8080`);
 });
 
-//example login form
-//this is code that renders a login form client side
-/*app.get('/login', function (req, res) {
-    render login form
-});*/
-
-
-/*const http = require('http');
-
-const hostname = '127.0.0.1';
-const port = 8080;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});*/
