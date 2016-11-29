@@ -1,4 +1,4 @@
-var app = require('../server');
+var app = require('../app');
 var http = require('http');
 var bodyParser = require('body-parser');
 
