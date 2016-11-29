@@ -59,8 +59,8 @@ app.get('/:time', function(req, res) {
 
 //Server start-------------------------------------------------------
 
-app.listen(process.env.PORT, function() {
-  console.log(`ready on port 8080`);
-});
+//app.listen(process.env.PORT, function() {
+  //console.log(`ready on port 8080`);
+//});
 
 module.exports = app;
