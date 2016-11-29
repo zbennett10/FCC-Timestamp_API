@@ -3,17 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <title>TimeStamp Microservice</title>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     </head>
     
-    <body style="background-color: azure">
-        <h1>Timestamp Generator</h1>
-        <p>This is a timestamp microservice created using node.js</p>
-        <p style="color: red">Example Calls</p>
+    <body style="background-color: aliceblue">
+        <h1 style="font-family: 'Montserrat';">Timestamp Generator</h1>
+        <div style="width: 500px">
+            <h4>This is a timestamp microservice created using node.js. Valid API calls take a natural date or unix timestamp as specified below.</h4>
+        </div>
+        <p style="color: red; font-family: 'Montserrat">Example Calls</p>
         <ul>
-            <li>/July 29, 1979</li>
-            <ul><li>-- {"unix": 302054400, "date": "Sun Jul 29 1979"}</li></ul>
-            <li>/302054400</li>
-            <ul><li>-- {"unix": 302054400, "date": "Sun Jul 29 1979"}</li></ul>
+            <li><h4>https://bennett-timestamp-api.herokuapp.com/July 29, 1979</h4></li>
+            <p style="font-family: 'Montserrat'"> { <br>"unix": 302054400, <br> "date": "Sun Jul 29 1979" <br>}</p>
+            <br>
+            <li><h4>https://bennett-timestamp-api.herokuapp.com/302054400</h4></li>
+            <p style="font-family: 'Montserrat'"> { <br>"unix": 302054400, <br> "date": "Sun Jul 29 1979" <br>}</p>
         </ul>
     </body>
 </html>
