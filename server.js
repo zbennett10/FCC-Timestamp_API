@@ -17,7 +17,7 @@ app.set('views', path.join(__dirname, 'views'));
 //use middleware-------------------------------------------------------
 
 //parses json and urlencoded requests
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 // define routes ------------------------------------------------------
