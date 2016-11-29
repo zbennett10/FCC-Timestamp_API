@@ -12,6 +12,7 @@
   "author": "\"Zachary",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "body-parser": "~1.10.1"
   }
 }
